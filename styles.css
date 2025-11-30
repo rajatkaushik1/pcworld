@@ -188,6 +188,14 @@ ul {
     font-size: 1.5rem;
 }
 
+.logo-img {
+    height: 60px;
+    max-width: 140px;
+    width: auto;
+    display: block;
+    object-fit: contain;
+}
+
 .since-badge-header {
     padding: 4px 10px;
     border-radius: var(--radius-round);
@@ -1353,6 +1361,11 @@ ul {
 
     .logo span {
         font-size: 1.1rem;
+    }
+
+    .logo-img {
+        height: 40px;
+        max-width: 120px;
     }
 
     .hero {
