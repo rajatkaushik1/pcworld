@@ -194,12 +194,16 @@
                             <label for="urgency">Urgency (Pick up)</label>
                             <div class="input-wrap">
                                 <i class="fas fa-clock"></i>
-                                <select id="urgency" name="Urgency" required>
+                                <select id="urgency" name="Urgency" required onchange="handleUrgencyChange(this)">
                                     <option value="">When should we pick it up?</option>
                                     <option value="Today">Today (Urgent)</option>
                                     <option value="Tomorrow">Tomorrow</option>
                                     <option value="Custom">Custom</option>
                                 </select>
+                            </div>
+                            <div class="input-wrap" id="customUrgencyWrap" style="display: none; margin-top: 10px;">
+                                <i class="fas fa-calendar-alt"></i>
+                                <input type="text" id="customUrgency" placeholder="Type a date or time" />
                             </div>
                         </div>
                     </div>
@@ -314,10 +318,28 @@
     <!-- SCRIPT FOR THE PAGE -->
     <script src="script.js"></script>
     <script>
+        function handleUrgencyChange(select) {
+            const customWrap = document.getElementById('customUrgencyWrap');
+            const customInput = document.getElementById('customUrgency');
+            if (select.value === 'Custom') {
+                customWrap.style.display = 'flex';
+                customInput.setAttribute('required', 'required');
+            } else {
+                customWrap.style.display = 'none';
+                customInput.removeAttribute('required');
+            }
+        }
+
         function submitRepairForm(e) {
             e.preventDefault();
             const form = document.getElementById('repairForm');
             const formData = new FormData(form);
+
+            // Handle Custom Urgency
+            if (formData.get('Urgency') === 'Custom') {
+                formData.set('Urgency', document.getElementById('customUrgency').value);
+            }
+
             const scriptURL = 'https://script.google.com/macros/s/AKfycbwewWkQ6u6h4-uWcGo7fej8C6mzi_N4dR_Wxq_ZddVuYAzdF99e4RLijCqbsTQDnb88Vw/exec';
 
             // Hide form, show 'Loading' container
