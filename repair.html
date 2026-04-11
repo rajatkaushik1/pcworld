@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book a Repair | PC WORLD Aligarh</title>
+
+    <meta name="description" content="PC WORLD Home Repair Center. Schedule a home pick-up for laptop and computer repair in Aligarh." />
+    <meta name="keywords" content="PC WORLD Aligarh, laptop repair pickup, computer repair home service" />
+
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" type="image/png" href="logo.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+    <style>
+        .repair-hero {
+            background: var(--gradient-hero);
+            color: #e5e7eb;
+            padding-top: 130px;
+            padding-bottom: 60px;
+            text-align: center;
+            position: relative;
+        }
+        @keyframes slideFadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .repair-header h1 {
+            font-size: clamp(2rem, 3vw + 1rem, 2.8rem);
+            color: #f9fafb;
+            margin-bottom: 12px;
+            opacity: 0;
+            animation: slideFadeIn 0.8s ease forwards;
+        }
+        .repair-header h1 span {
+            color: #60a5fa;
+        }
+        .repair-tagline {
+            font-size: 1.1rem;
+            color: #cbd5f5;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0;
+            animation: slideFadeIn 0.8s ease forwards 0.3s;
+        }
+        .repair-form-anim {
+            opacity: 0;
+            animation: slideFadeIn 0.8s ease forwards 0.6s;
+        }
+        .success-anim {
+            opacity: 0;
+            animation: slideFadeIn 0.6s ease forwards;
+        }
+        .repair-page-content {
+            padding-block: 60px;
+            display: flex;
+            justify-content: center;
+        }
+        .repair-form-container {
+            max-width: 800px;
+            width: 100%;
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            padding: 40px;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border);
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header id="header">
+        <nav class="navbar">
+            <div class="nav-left">
+                <a href="index.html" class="logo">
+                    <img src="logo.png" alt="PC WORLD logo" class="logo-img" />
+                    <span>PC WORLD</span>
+                </a>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html#home" class="nav-link">Home</a></li>
+                <li><a href="index.html#services" class="nav-link">Services</a></li>
+                <li><a href="index.html#about" class="nav-link">About</a></li>
+                <li><a href="index.html#reviews" class="nav-link">Reviews</a></li>
+                <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="nav-right">
+                <a href="tel:8979787851" class="nav-call">
+                    <i class="fas fa-phone"></i>
+                    <span>89797 87851</span>
+                </a>
+                <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- REPAIR HERO -->
+    <section class="repair-hero">
+        <div class="container repair-header">
+            <h1>Home Repair <span>Center</span></h1>
+            <p class="repair-tagline">
+                You provide the details; our technician will come specifically to pick up your device, we'll repair it at our shop, and return it fixed!
+            </p>
+        </div>
+    </section>
+
+    <!-- REPAIR FORM SECTION -->
+    <section class="section repair-page-content">
+        <div class="container" style="display: flex; justify-content: center;">
+            <div class="repair-form-container contact-form-wrapper repair-form-anim" id="mainFormContainer">
+                <h2 style="margin-bottom: 8px; color: var(--text-main);">Request Home Fix</h2>
+                <p class="contact-note" style="margin-bottom: 24px;">Please fill out this form so we can best prepare for your pick-up.</p>
+                
+                <form id="repairForm" class="contact-form" onsubmit="submitRepairForm(event)">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="fullName">Full Name</label>
+                            <div class="input-wrap">
+                                <i class="fas fa-user"></i>
+                                <input type="text" id="fullName" name="Full Name" placeholder="Enter your full name" required />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <div class="input-wrap">
+                                <i class="fas fa-phone"></i>
+                                <input type="tel" id="phone" name="Phone" placeholder="10-digit mobile number" required />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="deviceType">Device Type</label>
+                            <div class="input-wrap">
+                                <i class="fas fa-laptop"></i>
+                                <select id="deviceType" name="Device Type" required>
+                                    <option value="">Select Device Type</option>
+                                    <option value="Laptop">Laptop</option>
+                                    <option value="Desktop PC">Desktop PC</option>
+                                    <option value="Mac">Mac</option>
+                                    <option value="Printer">Printer</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="brandModel">Brand & Model Name</label>
+                            <div class="input-wrap">
+                                <i class="fas fa-tag"></i>
+                                <input type="text" id="brandModel" name="Brand & Model" placeholder="e.g. HP Pavilion, Dell XPS" required />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="issue">What seems to be the issue?</label>
+                            <div class="input-wrap">
+                                <i class="fas fa-wrench"></i>
+                                <select id="issue" name="Issue" required>
+                                    <option value="">Select the primary issue</option>
+                                    <option value="Screen Broken">Screen Broken</option>
+                                    <option value="Battery Issue">Battery Issue</option>
+                                    <option value="Keyboard Not Working">Keyboard Not Working</option>
+                                    <option value="Dead / Won't Turn On">Dead / Won't Turn On</option>
+                                    <option value="Very Slow">Very Slow</option>
+                                    <option value="Virus / Software Issue">Virus / Software Issue</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="urgency">Urgency (Pick up)</label>
+                            <div class="input-wrap">
+                                <i class="fas fa-clock"></i>
+                                <select id="urgency" name="Urgency" required>
+                                    <option value="">When should we pick it up?</option>
+                                    <option value="Today">Today (Urgent)</option>
+                                    <option value="Tomorrow">Tomorrow</option>
+                                    <option value="Custom">Custom</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="briefDesc">Brief Description</label>
+                        <div class="input-wrap textarea-wrap">
+                            <i class="fas fa-comment"></i>
+                            <textarea id="briefDesc" name="Brief Description" rows="3" placeholder="e.g. I spilled water on it yesterday" required></textarea>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary full-width" style="margin-top: 10px;">
+                        <i class="fas fa-paper-plane"></i> Submit Request
+                    </button>
+                </form>
+            </div>
+
+            <div id="formStatusRepair" class="repair-form-container contact-form-wrapper success-anim" style="display: none; text-align: center; flex-direction: column; justify-content: center; align-items: center;">
+                <h2 style="color: var(--success); margin-bottom: 16px;"><i class="fas fa-check-circle"></i> Request Received!</h2>
+                <p style="font-size: 1.1rem; color: var(--text-soft);">Our team is reviewing your details, and a technician will contact you shortly to arrange the pickup.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHATSAPP FLOAT -->
+    <a href="https://wa.me/918979787851" class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- SCROLL TO TOP -->
+    <button id="scrollTopBtn" class="scroll-top" aria-label="Scroll to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container footer-inner">
+            <div class="footer-col footer-brand">
+                <div class="logo">
+                    <img src="logo.png" alt="PC WORLD logo" class="logo-img" />
+                    <span>PC WORLD</span>
+                </div>
+                <p>
+                    Since 2005, PC WORLD has been Aligarh’s trusted destination
+                    for laptops, desktops, repairs and computer parts. Genuine
+                    advice, honest pricing and long‑term customer relationships.
+                </p>
+                <div class="footer-rating">
+                    <div class="stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <span>4.2 on Google</span>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html#home">Home</a></li>
+                    <li><a href="index.html#services">Services</a></li>
+                    <li><a href="index.html#about">About Us</a></li>
+                    <li><a href="index.html#reviews">Customer Reviews</a></li>
+                    <li><a href="index.html#contact">Contact & Location</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Our Services</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html#services">Laptop Repair</a></li>
+                    <li><a href="index.html#services">Custom PC Building</a></li>
+                    <li><a href="index.html#services">Used Computers</a></li>
+                    <li><a href="index.html#services">Printer Service</a></li>
+                    <li><a href="index.html#services">Battery & E‑Waste Recycling</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Contact Info</h4>
+                <ul class="footer-contact">
+                    <li>
+                        <i class="fas fa-location-dot"></i>
+                        <span>Shop No‑14, First Floor, Mangalam Complex, Samad Rd, Shyam Nagar, Aligarh, UP 202001</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-phone"></i>
+                        <a href="tel:8979787851">89797 87851</a>
+                    </li>
+                </ul>
+                <div class="footer-social">
+                    <a href="https://wa.me/918979787851" target="_blank" aria-label="WhatsApp">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                    <a href="tel:8979787851" aria-label="Call">
+                        <i class="fas fa-phone"></i>
+                    </a>
+                    <a href="https://share.google/vDXwysWjOQ2wr7kNz" target="_blank" aria-label="Google Maps">
+                        <i class="fab fa-google"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2024 PC WORLD, Aligarh. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- SCRIPT FOR THE PAGE -->
+    <script src="script.js"></script>
+    <script>
+        function submitRepairForm(e) {
+            e.preventDefault();
+            const form = document.getElementById('repairForm');
+            const formData = new FormData(form);
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbwewWkQ6u6h4-uWcGo7fej8C6mzi_N4dR_Wxq_ZddVuYAzdF99e4RLijCqbsTQDnb88Vw/exec';
+
+            // Hide form, show 'Loading' container
+            document.getElementById('mainFormContainer').style.display = 'none';
+            const statusContainer = document.getElementById('formStatusRepair');
+            statusContainer.innerHTML = '<h2 style="color: var(--warning); margin-bottom: 20px;"><i class="fas fa-spinner fa-spin"></i> Submitting...</h2><p>Please wait while we process your request.</p>';
+            statusContainer.style.display = 'flex';
+
+            fetch(scriptURL, { method: 'POST', body: formData })
+              .then(response => {
+                   statusContainer.innerHTML = '<h2 style="color: var(--success); margin-bottom: 16px;"><i class="fas fa-check-circle"></i> Request Received!</h2><p style="font-size: 1.1rem; color: var(--text-soft);">Our team is reviewing your details, and a technician will contact you shortly to arrange the pickup.</p>';
+              })
+              .catch(error => {
+                   console.error('Error!', error.message);
+                   statusContainer.innerHTML = '<h2 style="color: red; margin-bottom: 16px;"><i class="fas fa-exclamation-circle"></i> Error!</h2><p>Network issue. Please try calling us instead.</p>';
+              });
+        }
+    </script>
+</body>
+</html>
